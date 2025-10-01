@@ -1,0 +1,42 @@
+@'
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sankofa Da Biara — Today’s Exhibit</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Inter,Arial,sans-serif;background:#0A0A0A;color:#F5F5F5;margin:0}
+.wrap{max-width:900px;margin:0 auto;padding:24px}
+.tag{color:#C9A227;letter-spacing:.06em;text-transform:uppercase;font-size:.85rem}
+.card{background:#111;padding:20px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+a{color:#C9A227}.foot{opacity:.75}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="tag">Sankofa Da Biara — Go back and get it, every day.</div>
+  <h1 id="title">Loading…</h1>
+  <div id="summary" class="foot"></div>
+  <div class="card" style="margin-top:16px"><div id="video">Preparing video…</div></div>
+  <div id="disclaimer" class="foot" style="margin-top:12px"></div>
+</div>
+<script>
+(async function(){
+  const res = await fetch('../exhibits/2025-09-30-real-mccoy/metadata.json');
+  const meta = await res.json();
+  document.getElementById('title').textContent = meta.title;
+  document.getElementById('summary').textContent = meta.summary;
+  document.getElementById('disclaimer').textContent = "Note: " + meta.disclaimer;
+  const vid = document.getElementById('video');
+  const url = meta.video_url;
+  if(url.includes('youtube')){
+    const id = url.split('v=')[1] || url.split('/').pop();
+    vid.innerHTML = `<iframe width="100%" height="480" src="https://www.youtube.com/embed/${id}" title="${meta.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  } else {
+    vid.innerHTML = `<a href="${url}">Watch today’s exhibit</a>`;
+  }
+})();
+</script>
+</body>
+</html>
+'@ | Out-File -Encoding UTF8 site\index.html

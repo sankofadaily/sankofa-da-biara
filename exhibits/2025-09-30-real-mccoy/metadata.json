@@ -1,0 +1,17 @@
+@'
+{
+  "date": "2025-09-30",
+  "slug": "the-real-mccoy-oiling-the-gears-of-progress",
+  "title": "The Real McCoy: Oiling the Gears of Progress",
+  "series": "Sankofa Da Biara — Daily Exhibit",
+  "duration_sec": 300,
+  "people": ["Elijah McCoy"],
+  "themes": ["invention", "transport", "industry", "language"],
+  "tags": ["railroads", "lubrication", "logistics", "etymology"],
+  "summary": "Elijah McCoy’s automatic lubricator kept engines running, powering the railroads—and today’s logistics.",
+  "video_url": "https://youtu.be/REPLACE_WITH_YOUR_UPLOAD",
+  "disclaimer": "While McCoy’s patents are documented, the phrase 'The Real McCoy' has multiple possible origins.",
+  "thumbnail_alt": "Steam locomotive in 1870s rail yard with overlaid title text",
+  "cta": "Subscribe for tomorrow’s exhibit."
+}
+'@ | Out-File -Encoding UTF8 exhibits\2025-09-30-real-mccoy\metadata.json

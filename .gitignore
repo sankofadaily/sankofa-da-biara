@@ -1,0 +1,19 @@
+@'
+# System
+.DS_Store
+Thumbs.db
+
+# Node / tooling (if added later)
+node_modules/
+.next/
+dist/
+
+# Python quick-servers
+__pycache__/
+
+# Media dumps
+assets/video/*.mp4
+assets/video/*.mov
+assets/images/*.psd
+assets/audio/*.wav
+'@ | Out-File -Encoding UTF8 .gitignore
