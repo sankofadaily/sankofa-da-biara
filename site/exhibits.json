@@ -7,4 +7,13 @@
     "thumb": "../exhibits/2025-09-30-real-mccoy/thumbnails/cover.jpg",
     "page": "../exhibits/2025-09-30-real-mccoy/metadata.json"
   }
+,
+{
+  "date": "2025-10-01",
+  "title": "Shining a Light: Lewis Latimer and the Glow of Progress",
+  "slug": "shining-a-light-lewis-latimer",
+  "summary": "Latimer’s filament and drafting expertise helped electric light become practical and widespread.",
+  "thumb": "../exhibits/2025-10-01-lewis-latimer/thumbnails/cover.jpg",
+  "page": "../exhibits/2025-10-01-lewis-latimer/metadata.json"
+}
 ]
