@@ -1,0 +1,66 @@
+@'
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sankofa Da Biara — Archive</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Inter,Arial,sans-serif;background:#0A0A0A;color:#F5F5F5;margin:0}
+.wrap{max-width:1000px;margin:0 auto;padding:24px}
+h1{margin:.2rem 0 1rem}
+a{color:#C9A227;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.card{background:#111;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.card img{width:100%;height:160px;object-fit:cover;background:#222}
+.card .pad{padding:14px}
+.meta{opacity:.75;font-size:.9rem;margin-bottom:6px}
+.topnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.topnav a.btn{background:#C9A227;color:#0A0A0A;padding:8px 12px;border-radius:10px;font-weight:600}
+.empty{opacity:.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topnav">
+    <div>
+      <div style="color:#C9A227;letter-spacing:.06em;text-transform:uppercase;font-size:.8rem">Sankofa Da Biara</div>
+      <h1>Archive</h1>
+    </div>
+    <a class="btn" href="./index.html">Today’s Exhibit</a>
+  </div>
+
+  <div id="list" class="grid"></div>
+  <p id="empty" class="empty" style="display:none">No exhibits yet—check back tomorrow.</p>
+</div>
+
+<script>
+(async function(){
+  try{
+    const res = await fetch('./exhibits.json', {cache:'no-store'});
+    const exhibits = await res.json();
+    const list = document.getElementById('list');
+    const empty = document.getElementById('empty');
+    if(!exhibits.length){ empty.style.display='block'; return; }
+    exhibits.sort((a,b)=> (a.date<b.date?1:-1)); // newest first
+    list.innerHTML = exhibits.map(x => {
+      const img = x.thumb ? `<img alt="${x.title}" src="${x.thumb}">` : `<img alt="" aria-hidden="true">`;
+      return `
+        <a class="card" href="${x.page}">
+          ${img}
+          <div class="pad">
+            <div class="meta">${new Date(x.date).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'})}</div>
+            <div style="font-weight:700;margin-bottom:6px">${x.title}</div>
+            <div style="opacity:.85;font-size:.95rem">${x.summary}</div>
+          </div>
+        </a>
+      `;
+    }).join('');
+  } catch(e){
+    document.getElementById('empty').textContent = 'Could not load archive.'; 
+    document.getElementById('empty').style.display='block';
+  }
+})();
+</script>
+</body>
+</html>
+'@ | Out-File -Encoding UTF8 site\archive.html
